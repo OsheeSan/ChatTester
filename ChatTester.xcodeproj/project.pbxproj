@@ -22,7 +22,9 @@
 		846EA64A299F9B0400293840 /* NewConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846EA649299F9B0400293840 /* NewConversationViewController.swift */; };
 		846EA64C299F9B3F00293840 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846EA64B299F9B3F00293840 /* ProfileViewController.swift */; };
 		846EA64F299FC57100293840 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846EA64E299FC57100293840 /* Extensions.swift */; };
-		846EA65129A132A800293840 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 846EA65029A132A700293840 /* GoogleService-Info.plist */; };
+		84F193DB29A2591800861464 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F193DA29A2591800861464 /* DatabaseManager.swift */; };
+		84F193DD29A269E000861464 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84F193DC29A269E000861464 /* GoogleService-Info.plist */; };
+		84F193DF29A26C4800861464 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F193DE29A26C4800861464 /* Functions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,7 +45,9 @@
 		846EA649299F9B0400293840 /* NewConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewConversationViewController.swift; sourceTree = "<group>"; };
 		846EA64B299F9B3F00293840 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		846EA64E299FC57100293840 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		846EA65029A132A700293840 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		84F193DA29A2591800861464 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		84F193DC29A269E000861464 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		84F193DE29A26C4800861464 /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		CA4B3A930A3CE0B1DE1F6F52 /* Pods_ChatTester.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChatTester.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF53FE6A40268FC24C6786F2 /* Pods-ChatTester.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatTester.release.xcconfig"; path = "Target Support Files/Pods-ChatTester/Pods-ChatTester.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -81,7 +85,7 @@
 		846EA623299F918C00293840 /* ChatTester */ = {
 			isa = PBXGroup;
 			children = (
-				846EA65029A132A700293840 /* GoogleService-Info.plist */,
+				84F193DC29A269E000861464 /* GoogleService-Info.plist */,
 				846EA63F299F97AD00293840 /* Resources */,
 				846EA63E299F979800293840 /* ViewModels */,
 				846EA63D299F978200293840 /* Models */,
@@ -135,6 +139,8 @@
 				846EA626299F918C00293840 /* SceneDelegate.swift */,
 				846EA624299F918C00293840 /* AppDelegate.swift */,
 				846EA64E299FC57100293840 /* Extensions.swift */,
+				84F193DA29A2591800861464 /* DatabaseManager.swift */,
+				84F193DE29A26C4800861464 /* Functions.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -235,8 +241,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				846EA634299F918E00293840 /* LaunchScreen.storyboard in Resources */,
-				846EA65129A132A800293840 /* GoogleService-Info.plist in Resources */,
 				846EA631299F918E00293840 /* Assets.xcassets in Resources */,
+				84F193DD29A269E000861464 /* GoogleService-Info.plist in Resources */,
 				846EA62C299F918C00293840 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -295,9 +301,11 @@
 				846EA64C299F9B3F00293840 /* ProfileViewController.swift in Sources */,
 				846EA62F299F918C00293840 /* ChatTester.xcdatamodeld in Sources */,
 				846EA646299F99A900293840 /* PhotoViewerViewController.swift in Sources */,
+				84F193DF29A26C4800861464 /* Functions.swift in Sources */,
 				846EA644299F997200293840 /* RegisterViewController.swift in Sources */,
 				846EA648299F99C100293840 /* VideoPlayerViewController.swift in Sources */,
 				846EA64A299F9B0400293840 /* NewConversationViewController.swift in Sources */,
+				84F193DB29A2591800861464 /* DatabaseManager.swift in Sources */,
 				846EA642299F995200293840 /* LoginViewController.swift in Sources */,
 				846EA64F299FC57100293840 /* Extensions.swift in Sources */,
 				846EA627299F918C00293840 /* SceneDelegate.swift in Sources */,

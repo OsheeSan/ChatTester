@@ -189,78 +189,61 @@ class RegisterViewController: UIViewController {
     }
     
     @objc private func loginButtonTaped(){
-        guard let firstName = firstNameField.text, let email = emailField.text, let password = passwordField.text, let repeatedPassword = repeatPasswordField.text, !email.isEmpty, !firstName.isEmpty, !password.isEmpty, !repeatedPassword.isEmpty else {
-            alertUserLoginError()
+        guard let firstName = firstNameField.text,  let lastName = lastNameField.text,let email = emailField.text, let password = passwordField.text, let repeatedPassword = repeatPasswordField.text, !email.isEmpty, !firstName.isEmpty, !password.isEmpty, !repeatedPassword.isEmpty else {
+            showSimpleAlert(title: "Oops!", message: "You missed some cells to write!", style: .alert)
              return
         }
         
         guard email.isValidEmail else {
-            alertWrongEmailError()
+            showSimpleAlert(title: "Hey!", message: "Wrong Email input", style: .alert)
             return
         }
         
         guard password.count >= 6 else {
-            alertSmallPasswordError()
+            showSimpleAlert(title: "Hey!", message: "Your password is too short\nMinimum password lenght is 6 characters", style: .alert)
             return
         }
         
         guard password.count <= 16 else {
-            alertLongPasswordError()
+            showSimpleAlert(title: "Hey!", message: "Your password is too long\nMaximum password lenght is 16 characters", style: .alert)
             return
         }
         
         guard password == repeatedPassword else {
-            alertRepeatedPasswordError()
+            showSimpleAlert(title: "Be carefull!", message: "Passwords does not match", style: .alert)
             return
         }
         
-        //FireBase log in
-        FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password, completion: { authResult, error in
-            guard let result = authResult, error == nil else {
-                print("Oh nooooo error")
+        DatabaseManager.shared.EmailExist(email: email, completion: {[weak self] exists in
+            guard let strongSelf = self else {
                 return
             }
-            let user = result.user
-            print("Created user \(user)")
+            guard exists else {
+                strongSelf.showSimpleAlert(title: "Oops!", message: "User with this email is already exists", style: .alert)
+                return
+            }
+            FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password, completion: {[weak self] authResult, error in
+                guard let strongSelf = self else {
+                    return
+                }
+                
+                guard authResult != nil, error == nil else {
+                    print("Oh nooooo error")
+                    return
+                }
+                DatabaseManager.shared.insertUser(with: User(firstName: firstName,
+                                                             lastName: lastName,
+                                                              email: email))
+                strongSelf.navigationController?.dismiss(animated: true)
+            })
         })
+        
     }
     
-    func alertWrongEmailError(){
-        let alert = UIAlertController(title: "Hey!",
-                                      message: "Wrong email!",
-                                      preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Okay", style: .default))
-        present(alert, animated: true)
-    }
-    
-    
-    func alertUserLoginError(){
-        let alert = UIAlertController(title: "Oh no :(",
-                                      message: "Please enter all information correct",
-                                      preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Okay", style: .default))
-        present(alert, animated: true)
-    }
-    
-    func alertSmallPasswordError(){
-        let alert = UIAlertController(title: "Hey!",
-                                      message: "Password must be minimum 6 characters length",
-                                      preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Okay", style: .default))
-        present(alert, animated: true)
-    }
-    func alertLongPasswordError(){
-        let alert = UIAlertController(title: "Hey!",
-                                      message: "Password maximum length is 16",
-                                      preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Okay", style: .default))
-        present(alert, animated: true)
-    }
-    
-    func alertRepeatedPasswordError(){
-        let alert = UIAlertController(title: "Oops!",
-                                      message: "Passwords do not match",
-                                      preferredStyle: .alert)
+    func showSimpleAlert(title: String, message: String, style: UIAlertController.Style){
+        let alert = UIAlertController(title: title,
+                                      message: message,
+                                      preferredStyle: style)
         alert.addAction(UIAlertAction(title: "Okay", style: .default))
         present(alert, animated: true)
     }
